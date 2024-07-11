@@ -30,8 +30,8 @@ The **Flutter Flame Space Shooter Game** is a demonstration of how to create a s
 ## Screenshots
 
 <p align="center">
-  <img src="screenshots/main_menu.png" alt="Main Menu" width="300"/>
-  <img src="screenshots/gameplay.png" alt="Gameplay" width="300"/>
+  <img src="Screenshots/main_menu.png" alt="Main Menu" width="300"/>
+  <img src="Screenshots/game.png" alt="Gameplay" width="300"/>
 </p>
 
 ## Installation
