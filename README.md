@@ -27,7 +27,7 @@ The **Flutter Flame Space Shooter Game** is a demonstration of how to create a s
 - **Enemy Spawning**: Enemies spawn periodically and move down the screen.
 - **Parallax Background**: A visually appealing parallax background for a dynamic space environment.
 
-/*## Screenshots
+## Screenshots
 
 ![Main Menu](Screenshots/main_menu.png)
 *Main Menu*
