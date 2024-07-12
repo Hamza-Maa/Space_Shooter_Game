@@ -3,6 +3,10 @@ class Assets {
   Assets._();
 
   static const String audioMenuSound = 'assets/audio/menu_sound.mp3';
+  static const String healthHealth1 = 'assets/images/health/health_1.png';
+  static const String healthHealth3 = 'assets/images/health/health_3.png';
+  static const String healthHealthFull = 'assets/images/health/health_full.png';
+  static const String healthHelath2 = 'assets/images/health/helath_2.png';
   static const String images1 = 'assets/images/1.png';
   static const String images2 = 'assets/images/2.png';
   static const String images3 = 'assets/images/3.png';

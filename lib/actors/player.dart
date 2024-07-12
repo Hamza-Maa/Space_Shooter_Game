@@ -5,6 +5,7 @@ import 'package:tuto_test/main_app.dart';
 class Player extends SpriteAnimationComponent
     with HasGameReference<SpaceShooterGame> {
   late final SpawnComponent _bulletSpawner;
+  int health = 100; // Initial health
 
   Player()
       : super(

@@ -14,6 +14,7 @@ class Enemy extends SpriteAnimationComponent
         );
 
   static const enemySize = 140.0;
+  static const damage = 20; // Damage inflicted on collision
 
   @override
   Future<void> onLoad() async {

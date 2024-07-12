@@ -17,7 +17,7 @@ class SpaceShooterGame extends FlameGame
   @override
   Future<void> onLoad() async {
     //debug mode
-    debugMode = true;
+    debugMode = false;
     final parallax = await loadParallaxComponent(
       [
         ParallaxImageData('1.png'),
@@ -47,6 +47,7 @@ class SpaceShooterGame extends FlameGame
     );
   }
 
+
   @override
   void onPanUpdate(DragUpdateInfo info) {
     player.move(info.delta.global);
@@ -61,6 +62,13 @@ class SpaceShooterGame extends FlameGame
   void onPanEnd(DragEndInfo info) {
     player.stopShooting();
   }
+  /*
+  @override
+  void update(double dt) {
+    super.update(dt);
+    hud.updateHealthBar(player.currentHealth); // Update the health bar in HUD
+  }
+   */
 }
 
 class SpaceShooterGameWidget extends StatelessWidget {
