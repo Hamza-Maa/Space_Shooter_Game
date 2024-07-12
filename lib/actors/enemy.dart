@@ -1,17 +1,17 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:tuto_test/actors/player.dart';
 import 'package:tuto_test/objects/bullet.dart';
 import 'package:tuto_test/objects/explosion.dart';
 import 'package:tuto_test/main_app.dart';
 
 class Enemy extends SpriteAnimationComponent
     with HasGameReference<SpaceShooterGame>, CollisionCallbacks {
-  Enemy({
-    super.position,
-  }) : super(
-          size: Vector2.all(enemySize),
-          anchor: Anchor.center,
-        );
+  Enemy()
+      : super(
+    size: Vector2.all(enemySize),
+    anchor: Anchor.center,
+  );
 
   static const enemySize = 140.0;
   static const damage = 20; // Damage inflicted on collision
@@ -41,6 +41,7 @@ class Enemy extends SpriteAnimationComponent
       removeFromParent();
     }
   }
+
   @override
   void onCollisionStart(
       Set<Vector2> intersectionPoints,
@@ -49,9 +50,17 @@ class Enemy extends SpriteAnimationComponent
     super.onCollisionStart(intersectionPoints, other);
 
     if (other is Bullet) {
+      print('Bullet work!');
       removeFromParent();
       other.removeFromParent();
       game.add(Explosion(position: position));
+    }
+
+    if (other is Player) {
+      print('Player collided with enemy!');
+      other.takeDamage(damage); // Apply damage to the player
+      game.add(Explosion(position: position)); // Add explosion effect
+      removeFromParent();
     }
   }
 }

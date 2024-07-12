@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flame/game.dart';
 import 'package:tuto_test/overlays/main_menu.dart';
 
-
 class GameOver extends StatelessWidget {
   final FlameGame game;
+  final VoidCallback onRetry; // Callback for retry action
 
-
-  const GameOver({super.key, required this.game});
+  const GameOver({super.key, required this.game, required this.onRetry});
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +34,17 @@ class GameOver extends StatelessWidget {
               const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
-
+                  onRetry(); // Call retry function passed from SpaceShooterGame
                 },
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.black, backgroundColor: Colors.yellow,
+                  foregroundColor: Colors.black,
+                  backgroundColor: Colors.yellow,
                   textStyle: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
-                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -58,12 +59,14 @@ class GameOver extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.black, backgroundColor: Colors.yellow,
+                  foregroundColor: Colors.black,
+                  backgroundColor: Colors.yellow,
                   textStyle: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
-                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),

@@ -1,17 +1,18 @@
 import 'package:flame/components.dart';
 import 'package:tuto_test/objects/bullet.dart';
 import 'package:tuto_test/main_app.dart';
+import 'package:flame/collisions.dart';
 
 class Player extends SpriteAnimationComponent
-    with HasGameReference<SpaceShooterGame> {
+    with HasGameReference<SpaceShooterGame>, CollisionCallbacks {
   late final SpawnComponent _bulletSpawner;
   int health = 100; // Initial health
 
   Player()
       : super(
-          size: Vector2(80, 130),
-          anchor: Anchor.center,
-        );
+    size: Vector2(80, 130),
+    anchor: Anchor.center,
+  );
 
   @override
   Future<void> onLoad() async {
@@ -43,9 +44,9 @@ class Player extends SpriteAnimationComponent
     );
 
     game.add(_bulletSpawner);
+    add(RectangleHitbox());
   }
 
-  // Other methods omitted
   void move(Vector2 delta) {
     position.add(delta);
   }
@@ -56,5 +57,17 @@ class Player extends SpriteAnimationComponent
 
   void stopShooting() {
     _bulletSpawner.timer.stop();
+  }
+
+
+  void takeDamage(int damage) {
+    health -= damage;
+    if (health <= 0) {
+      // Implement game over logic or other actions when health reaches zero
+      print('Game Over!');
+      // Example: Reset player position or end game
+      // position = game.size / 2;
+       game.gameOver();
+    }
   }
 }
