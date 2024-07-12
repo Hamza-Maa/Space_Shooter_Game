@@ -1,9 +1,6 @@
 import 'package:flame_audio/flame_audio.dart';
-import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:tuto_test/main_app.dart';
-import 'package:tuto_test/overlays/pause_menu.dart';
-
 
 class MainMenu extends StatefulWidget {
   const MainMenu({super.key});
@@ -46,7 +43,8 @@ class _MainMenuState extends State<MainMenu> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/back2.jpg'), // Path to your background image
+            image: AssetImage(
+                'assets/images/back2.jpg'), // Path to your background image
             fit: BoxFit.cover,
           ),
         ),
@@ -69,7 +67,8 @@ class _MainMenuState extends State<MainMenu> {
                 onPressed: () => _startGame(context),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blueAccent,
-                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
@@ -87,7 +86,8 @@ class _MainMenuState extends State<MainMenu> {
                 onPressed: _exitGame,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.redAccent,
-                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
@@ -104,21 +104,6 @@ class _MainMenuState extends State<MainMenu> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class SpaceShooterGameWidget extends StatelessWidget {
-  const SpaceShooterGameWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return GameWidget<SpaceShooterGame>(
-      game: SpaceShooterGame(),
-      overlayBuilderMap: {
-        'PauseMenu': (context, game) => PauseMenu(game: game),
-      },
-      initialActiveOverlays: const [],
     );
   }
 }

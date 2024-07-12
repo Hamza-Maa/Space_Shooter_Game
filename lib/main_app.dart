@@ -7,14 +7,17 @@ import 'package:flutter/material.dart';
 import 'package:tuto_test/actors/enemy.dart';
 import 'package:tuto_test/overlays/hud.dart';
 import 'package:tuto_test/actors/player.dart';
+import 'package:tuto_test/overlays/pause_menu.dart';
 
-
-class SpaceShooterGame extends FlameGame with PanDetector, HasCollisionDetection, TapCallbacks {
+class SpaceShooterGame extends FlameGame
+    with PanDetector, HasCollisionDetection, TapCallbacks {
   late Player player;
   late HUD hud;
 
   @override
   Future<void> onLoad() async {
+    //debug mode
+    debugMode = true;
     final parallax = await loadParallaxComponent(
       [
         ParallaxImageData('1.png'),
@@ -57,5 +60,20 @@ class SpaceShooterGame extends FlameGame with PanDetector, HasCollisionDetection
   @override
   void onPanEnd(DragEndInfo info) {
     player.stopShooting();
+  }
+}
+
+class SpaceShooterGameWidget extends StatelessWidget {
+  const SpaceShooterGameWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GameWidget<SpaceShooterGame>(
+      game: SpaceShooterGame(),
+      overlayBuilderMap: {
+        'PauseMenu': (context, game) => PauseMenu(game: game),
+      },
+      initialActiveOverlays: const [],
+    );
   }
 }

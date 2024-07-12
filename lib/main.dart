@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tuto_test/overlays/main_menu.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
