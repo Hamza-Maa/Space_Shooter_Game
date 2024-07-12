@@ -1,5 +1,5 @@
 import 'package:flame/components.dart';
-import 'package:tuto_test/bullet.dart';
+import 'package:tuto_test/objects/bullet.dart';
 import 'package:tuto_test/main_app.dart';
 
 class Player extends SpriteAnimationComponent

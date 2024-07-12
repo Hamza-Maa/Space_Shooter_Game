@@ -2,6 +2,7 @@
 class Assets {
   Assets._();
 
+  static const String audioMenuSound = 'assets/audio/menu_sound.mp3';
   static const String images1 = 'assets/images/1.png';
   static const String images2 = 'assets/images/2.png';
   static const String images3 = 'assets/images/3.png';
@@ -12,6 +13,7 @@ class Assets {
   static const String imagesEnemy3 = 'assets/images/enemy3.png';
   static const String imagesExplo = 'assets/images/explo.png';
   static const String imagesExplosion = 'assets/images/explosion.png';
+  static const String imagesPause = 'assets/images/pause.png';
   static const String imagesPlayer2 = 'assets/images/player2.png';
   static const String imagesShip = 'assets/images/ship.png';
   static const String imagesStars0 = 'assets/images/stars_0.png';

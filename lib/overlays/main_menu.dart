@@ -1,10 +1,44 @@
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:tuto_test/main_app.dart';
+import 'package:tuto_test/overlays/pause_menu.dart';
 
 
-class MainMenu extends StatelessWidget {
+class MainMenu extends StatefulWidget {
   const MainMenu({super.key});
+
+  @override
+  _MainMenuState createState() => _MainMenuState();
+}
+
+class _MainMenuState extends State<MainMenu> {
+  @override
+  void initState() {
+    super.initState();
+    FlameAudio.bgm.initialize();
+    FlameAudio.bgm.play('menu_sound.mp3', volume: 0.5);
+  }
+
+  @override
+  void dispose() {
+    FlameAudio.bgm.dispose();
+    super.dispose();
+  }
+
+  void _startGame(BuildContext context) {
+    FlameAudio.bgm.stop();
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const SpaceShooterGameWidget(),
+      ),
+    );
+  }
+
+  void _exitGame() {
+    FlameAudio.bgm.stop();
+    Navigator.of(context).pop();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +46,7 @@ class MainMenu extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/back2.jpg'),  // Path to your background image
+            image: AssetImage('assets/images/back2.jpg'), // Path to your background image
             fit: BoxFit.cover,
           ),
         ),
@@ -32,13 +66,7 @@ class MainMenu extends StatelessWidget {
               ),
               const SizedBox(height: 50),
               ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const SpaceShooterGameWidget(),
-                    ),
-                  );
-                },
+                onPressed: () => _startGame(context),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blueAccent,
                   padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
@@ -56,10 +84,7 @@ class MainMenu extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
-                  // Exit the app
-                  Navigator.of(context).pop();
-                },
+                onPressed: _exitGame,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.redAccent,
                   padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
@@ -83,7 +108,6 @@ class MainMenu extends StatelessWidget {
   }
 }
 
-
 class SpaceShooterGameWidget extends StatelessWidget {
   const SpaceShooterGameWidget({super.key});
 
@@ -91,7 +115,10 @@ class SpaceShooterGameWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GameWidget<SpaceShooterGame>(
       game: SpaceShooterGame(),
+      overlayBuilderMap: {
+        'PauseMenu': (context, game) => PauseMenu(game: game),
+      },
+      initialActiveOverlays: const [],
     );
   }
 }
-
