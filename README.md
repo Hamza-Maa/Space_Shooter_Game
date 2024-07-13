@@ -43,25 +43,22 @@ The **Flutter Flame Space Shooter Game** is a demonstration of how to create a s
 To get started with the Flutter Flame Space Shooter Game, follow these steps:
 
 1. **Clone the Repository**:
-    
-bash
+    ```bash
     git clone https://github.com/Hamza-Maa/Space_Shooter_Game.git
     cd Space_Shooter_Game
-
+    ```
 
 2. **Install Dependencies**:
     Ensure you have Flutter installed. Then, run the following command to install dependencies:
-    
-bash
+    ```bash
     flutter pub get
-
+    ```
 
 3. **Run the App**:
     Launch the app using your preferred IDE or the command line:
-    
-bash
+    ```bash
     flutter run
-
+    ```
 
 ## Usage
 
