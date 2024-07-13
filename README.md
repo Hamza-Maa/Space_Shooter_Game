@@ -88,17 +88,17 @@ In the **Flutter Flame Space Shooter Game**, you control a spaceship that can mo
 
 This project uses the following dependencies:
 
-- **Flutter SDK**: >=3.4.3 <4.0.0
-- **Flame**: ^1.18.0
+- **Flutter SDK**: `>=3.4.3 <4.0.0`
+- **Flame**: `^1.18.0`
 
-Ensure your pubspec.yaml includes these dependencies:
+Ensure your `pubspec.yaml` includes these dependencies:
 
-yaml
+```yaml
 dependencies:
   flutter:
     sdk: flutter
   flame: ^1.18.0
-
+```
 
 ## License
 
