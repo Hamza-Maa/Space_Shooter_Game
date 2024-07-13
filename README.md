@@ -1,6 +1,3 @@
-Here's the updated README file with added score description and game over details:
-
-```markdown
 # Flutter Flame Space Shooter Game
 
 Welcome to the **Flutter Flame Space Shooter Game**! This is an exciting space shooter game developed using the Flutter framework and the Flame game engine. The game features a main menu, beautiful background images, and interactive gameplay elements such as player movement, shooting, and enemy spawning.
@@ -13,6 +10,7 @@ Welcome to the **Flutter Flame Space Shooter Game**! This is an exciting space s
 - [Installation](#installation)
 - [Usage](#usage)
 - [Gameplay](#gameplay)
+- [Score and Game Over](#score-and-game-over)
 - [Dependencies](#dependencies)
 - [License](#license)
 - [Contributing](#contributing)
@@ -29,13 +27,15 @@ The **Flutter Flame Space Shooter Game** is a demonstration of how to create a s
 - **Shooting Mechanism**: Automatic shooting when the player moves.
 - **Enemy Spawning**: Enemies spawn periodically and move down the screen.
 - **Parallax Background**: A visually appealing parallax background for a dynamic space environment.
+- **Score Tracking**: Keep track of your score as you shoot down enemies and collect points.
+- **Game Over**: Game ends when the player's health drops to zero, displaying a game over screen with the option to retry.
 
 ## Screenshots
 
 <p align="center">
   <img src="Screenshots/main_menu.png" alt="Main Menu" width="300"/>
   <img src="Screenshots/gameplay.png" alt="Gameplay" width="300"/>
-<img src="Screenshots/gameover.png" alt="GameOver" width="300"/>
+  <img src="Screenshots/gameover.png" alt="GameOver" width="300"/>
 </p>
 
 ## Installation
@@ -43,22 +43,25 @@ The **Flutter Flame Space Shooter Game** is a demonstration of how to create a s
 To get started with the Flutter Flame Space Shooter Game, follow these steps:
 
 1. **Clone the Repository**:
-    ```bash
+    
+bash
     git clone https://github.com/Hamza-Maa/Space_Shooter_Game.git
     cd Space_Shooter_Game
-    ```
+
 
 2. **Install Dependencies**:
     Ensure you have Flutter installed. Then, run the following command to install dependencies:
-    ```bash
+    
+bash
     flutter pub get
-    ```
+
 
 3. **Run the App**:
     Launch the app using your preferred IDE or the command line:
-    ```bash
+    
+bash
     flutter run
-    ```
+
 
 ## Usage
 
@@ -70,33 +73,35 @@ To get started with the Flutter Flame Space Shooter Game, follow these steps:
 ### Gameplay
 
 - **Move Player**: Drag on the screen to move the player ship.
-- **Shooting**: The player ship automatically shoots when you move.
+- **Shooting**: The player ship automatically shoots when moving.
 - **Avoid Enemies**: Dodge incoming enemies to survive.
 
 ## Gameplay
 
 In the **Flutter Flame Space Shooter Game**, you control a spaceship that can move around the screen. Your goal is to avoid enemies and survive as long as possible. Enemies spawn at the top of the screen and move downward, and your spaceship automatically shoots when you move.
+## Score Description
 
-## Score and Game Over
+- **Score**: Your score increases as you shoot down enemies. Try to achieve the highest score possible!
 
-- **Score**: Collect points by shooting down enemies. Each enemy defeated adds to your score.
-- **Game Over**: The game ends when your spaceship collides with an enemy or loses all health. You can retry the game or return to the main menu.
+## Game Over
+
+- **Game Over**: When your spaceship collides with an enemy or runs out of health, the game ends. You can retry from the main menu to beat your high score!
 
 ## Dependencies
 
 This project uses the following dependencies:
 
-- **Flutter SDK**: `>=3.4.3 <4.0.0`
-- **Flame**: `^1.18.0`
+- **Flutter SDK**: >=3.4.3 <4.0.0
+- **Flame**: ^1.18.0
 
-Ensure your `pubspec.yaml` includes these dependencies:
+Ensure your pubspec.yaml includes these dependencies:
 
-```yaml
+yaml
 dependencies:
   flutter:
     sdk: flutter
   flame: ^1.18.0
-```
+
 
 ## License
 
@@ -112,6 +117,3 @@ For any questions or inquiries, please contact:
 
 - Email: hamza.maatougui@outlook.com
 - GitHub: [Hamza-Maa](https://github.com/Hamza-Maa)
-```
-
-This README now includes a dedicated section for score and game over details, providing a comprehensive overview of your game.
