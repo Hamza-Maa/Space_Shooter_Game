@@ -5,26 +5,33 @@ import 'package:flame/game.dart';
 import 'package:flame/parallax.dart';
 import 'package:flutter/material.dart';
 import 'package:tuto_test/actors/enemy.dart';
+import 'package:tuto_test/objects/coin.dart';
 import 'package:tuto_test/overlays/game_over_menu.dart';
 import 'package:tuto_test/overlays/hud.dart';
 import 'package:tuto_test/actors/player.dart';
 import 'package:tuto_test/overlays/pause_menu.dart';
 
 class SpaceShooterGame extends FlameGame
-    with HasGameReference<SpaceShooterGame> ,PanDetector, HasCollisionDetection, TapCallbacks {
+    with
+        HasGameReference<SpaceShooterGame>,
+        PanDetector,
+        HasCollisionDetection,
+        TapCallbacks {
   late Player player;
   late HUD hud;
   late SpawnComponent enemySpawner;
+  late SpawnComponent coinSpawner;
 
   @override
   Future<void> onLoad() async {
-    //debug mode
-    debugMode = true;
+    //debugger Mode
+    debugMode = false;
+    // Initialize audio
+    //FlameAudio.bgm.initialize();
     final parallax = await loadParallaxComponent(
       [
         ParallaxImageData('1.png'),
         ParallaxImageData('2.png'),
-        // you can add a third one here
       ],
       baseVelocity: Vector2(0, -5),
       repeat: ImageRepeat.repeat,
@@ -37,10 +44,10 @@ class SpaceShooterGame extends FlameGame
 
     hud = HUD();
     add(hud);
-    startEnemySpawning(); // Start spawning enemies
-
-
+    startEnemySpawning();
+    startCoinSpawning();
   }
+
   void startEnemySpawning() {
     enemySpawner = SpawnComponent(
       factory: (index) {
@@ -48,10 +55,39 @@ class SpaceShooterGame extends FlameGame
       },
       period: 1,
       area: Rectangle.fromLTWH(0, 0, size.x, -Enemy.enemySize),
-
     );
 
     add(enemySpawner);
+  }
+
+  void startCoinSpawning() {
+    coinSpawner = SpawnComponent(
+      factory: (index) {
+        return Coin();
+      },
+      period: 3,
+      area: Rectangle.fromLTWH(0, 0, size.x, -Coin.coinSize),
+    );
+
+    add(coinSpawner);
+  }
+
+  //clear coin
+  void clearAndResetCoinSpawns() {
+    // Clear existing coins
+    children.whereType<Coin>().forEach((coin) => coin.removeFromParent());
+    // Remove and re-add the coin spawner to reset it
+    coinSpawner.removeFromParent();
+    startCoinSpawning();
+  }
+
+  //clear enemy
+  void clearAndResetEnemySpawns() {
+    // Clear existing coins
+    children.whereType<Enemy>().forEach((enemy) => enemy.removeFromParent());
+    // Remove and re-add the coin spawner to reset it
+    enemySpawner.removeFromParent();
+    startEnemySpawning();
   }
 
   @override
@@ -69,28 +105,20 @@ class SpaceShooterGame extends FlameGame
     player.stopShooting();
   }
 
-
   void gameOver() {
-    // Pause the game when game over
     pauseEngine();
-
-    // Add game over overlay
     overlays.add('GameOver');
   }
+
   void resetGame() {
-    // Reset player position to the center of the screen
-    player.position = game.size / 2;
-
-    // Reset player health to initial value
+    player.position = size / 2;
     player.health = 100;
-    // Clear existing enemies
-
-    // Resume the game engine
-    resumeEngine();
-    // Remove 'GameOver' overlay if it exists
+    player.resetScore();
+    clearAndResetCoinSpawns(); // Clear and reset coin spawns
+    clearAndResetEnemySpawns();
     overlays.remove('GameOver');
+    resumeEngine();
   }
-
 }
 
 class SpaceShooterGameWidget extends StatelessWidget {
@@ -102,7 +130,10 @@ class SpaceShooterGameWidget extends StatelessWidget {
       game: SpaceShooterGame(),
       overlayBuilderMap: {
         'PauseMenu': (context, game) => PauseMenu(game: game),
-        'GameOver': (context, game) => GameOver(game: game, onRetry: game.resetGame), // Add GameOver overlay
+        'GameOver': (context, game) => GameOver(
+            game: game,
+            onRetry: game.resetGame,
+            score: game.player.score), // Pass the score to GameOver
       },
       initialActiveOverlays: const [],
     );

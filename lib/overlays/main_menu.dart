@@ -10,7 +10,8 @@ class MainMenu extends StatefulWidget {
   _MainMenuState createState() => _MainMenuState();
 }
 
-class _MainMenuState extends State<MainMenu> with SingleTickerProviderStateMixin {
+class _MainMenuState extends State<MainMenu>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Color?> _titleColorAnimation;
 
@@ -59,7 +60,8 @@ class _MainMenuState extends State<MainMenu> with SingleTickerProviderStateMixin
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/back2.jpg'), // Path to your background image
+            image: AssetImage(
+                'assets/images/back2.jpg'), // Path to your background image
             fit: BoxFit.cover,
           ),
         ),
@@ -94,7 +96,8 @@ class _MainMenuState extends State<MainMenu> with SingleTickerProviderStateMixin
                 onPressed: () => _startGame(context),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.amber,
-                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
@@ -115,7 +118,8 @@ class _MainMenuState extends State<MainMenu> with SingleTickerProviderStateMixin
                 onPressed: _exitGame,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.redAccent,
-                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),

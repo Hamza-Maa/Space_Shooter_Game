@@ -2,29 +2,27 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:tuto_test/actors/player.dart';
-import 'package:tuto_test/objects/bullet.dart';
-import 'package:tuto_test/objects/explosion.dart';
 import 'package:tuto_test/main_app.dart';
+import 'package:tuto_test/widgets/coin_effect.dart';
 
-class Enemy extends SpriteAnimationComponent
+class Coin extends SpriteAnimationComponent
     with HasGameReference<SpaceShooterGame>, CollisionCallbacks {
-  Enemy()
+  Coin()
       : super(
-          size: Vector2.all(enemySize),
+          size: Vector2.all(coinSize),
           anchor: Anchor.center,
         );
 
-  static const enemySize = 50.0;
-  static const damage = 20; // Damage inflicted on collision
+  static const coinSize = 50.0;
 
   @override
   Future<void> onLoad() async {
     await super.onLoad();
 
     animation = await game.loadSpriteAnimation(
-      'enemy.png',
+      'coin.png',
       SpriteAnimationData.sequenced(
-        amount: 4,
+        amount: 6,
         stepTime: .2,
         textureSize: Vector2.all(16),
       ),
@@ -50,17 +48,10 @@ class Enemy extends SpriteAnimationComponent
   ) {
     super.onCollisionStart(intersectionPoints, other);
 
-    if (other is Bullet) {
-      removeFromParent();
-      other.removeFromParent();
-      FlameAudio.play('ship_explosion.mp3', volume: 0.3); // sound effects
-      game.add(Explosion(position: position));
-    }
-
     if (other is Player) {
-      other.takeDamage(damage); // Apply damage to the player
-      FlameAudio.play('ship_explosion.mp3', volume: 0.3); // sound effects
-      game.add(Explosion(position: position)); // Add explosion effect
+      FlameAudio.play('coin_pickup.mp3'); // sound effects
+      other.incrementScore(1); // Increment score by 10 points
+      game.add(CoinEffect(position: position));
       removeFromParent();
     }
   }

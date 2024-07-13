@@ -7,12 +7,13 @@ class Player extends SpriteAnimationComponent
     with HasGameReference<SpaceShooterGame>, CollisionCallbacks {
   late final SpawnComponent _bulletSpawner;
   int health = 100; // Initial health
+  int score = 0; // Initial score
 
   Player()
       : super(
-    size: Vector2(80, 130),
-    anchor: Anchor.center,
-  );
+          size: Vector2(80, 130),
+          anchor: Anchor.center,
+        );
 
   @override
   Future<void> onLoad() async {
@@ -29,7 +30,7 @@ class Player extends SpriteAnimationComponent
 
     position = game.size / 2;
     _bulletSpawner = SpawnComponent(
-      period: .2,
+      period: .4, //speed of firing
       selfPositioning: true,
       factory: (index) {
         return Bullet(
@@ -59,15 +60,18 @@ class Player extends SpriteAnimationComponent
     _bulletSpawner.timer.stop();
   }
 
-
   void takeDamage(int damage) {
     health -= damage;
     if (health <= 0) {
-      // Implement game over logic or other actions when health reaches zero
-      print('Game Over!');
-      // Example: Reset player position or end game
-      // position = game.size / 2;
-       game.gameOver();
+      game.gameOver();
     }
+  }
+
+  void incrementScore(int points) {
+    score += points;
+  }
+
+  void resetScore() {
+    score = 0; // Reset score to 0
   }
 }

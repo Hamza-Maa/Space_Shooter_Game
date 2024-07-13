@@ -1,12 +1,14 @@
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:tuto_test/widgets/HealthBar.dart';
-import 'package:tuto_test/main_app.dart'; // Import the main app to access player
+import 'package:tuto_test/main_app.dart';
+import 'package:tuto_test/widgets/ScoreText.dart'; // Import the main app to access player
 
 class HUD extends PositionComponent
     with HasGameRef<SpaceShooterGame>, TapCallbacks {
   late final SpriteComponent pauseButton;
   late HealthBar healthBar;
+  late ScoreText scoreText; // Score text component
 
   @override
   Future<void> onLoad() async {
@@ -28,6 +30,11 @@ class HUD extends PositionComponent
       size: Vector2(120, 20), // Define the size of the health bar
     );
     add(healthBar);
+    scoreText = ScoreText(
+      score: 0,
+      position: Vector2(20, 82), // Position the score text
+    );
+    add(scoreText);
   }
 
   @override
@@ -35,6 +42,8 @@ class HUD extends PositionComponent
     super.update(dt);
     // Update the health bar based on the player's current health
     updateHealthBar(gameRef.player.health);
+    // Update the score text based on the player's current score
+    updateScoreText(gameRef.player.score);
   }
 
   @override
@@ -52,5 +61,7 @@ class HUD extends PositionComponent
     healthBar.updateSegments((currentHealth / 100 * 5)
         .toInt()); // Adjust to fit the number of segments
   }
+  void updateScoreText(int score) {
+    scoreText.updateScore(score); // Update the score text
+  }
 }
-

@@ -10,19 +10,24 @@ class HealthBarSegment extends PositionComponent {
     required Vector2 size,
   })  : _paint = Paint()
           ..shader = LinearGradient(
-            colors: isFilled ? [Colors.yellow, Colors.orange] : [Colors.grey, Colors.grey.shade600],
+            colors: isFilled
+                ? [Colors.yellow, Colors.orange]
+                : [Colors.grey, Colors.grey.shade600],
           ).createShader(Rect.fromLTWH(0, 0, size.x, size.y)),
         super(position: position, size: size);
 
   @override
   void render(Canvas canvas) {
-    final rect = RRect.fromRectAndRadius(size.toRect(), const Radius.circular(4));
+    final rect =
+        RRect.fromRectAndRadius(size.toRect(), const Radius.circular(4));
     canvas.drawRRect(rect, _paint);
   }
 
   void updateColor(bool isFilled) {
     _paint.shader = LinearGradient(
-      colors: isFilled ? [Colors.yellow, Colors.orange] : [Colors.grey, Colors.grey.shade600],
+      colors: isFilled
+          ? [Colors.yellow, Colors.orange]
+          : [Colors.grey, Colors.grey.shade600],
     ).createShader(Rect.fromLTWH(0, 0, size.x, size.y));
   }
 }

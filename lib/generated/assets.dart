@@ -2,26 +2,18 @@
 class Assets {
   Assets._();
 
+  static const String audioCoinPickup = 'assets/audio/coin_pickup.mp3';
   static const String audioMenuSound = 'assets/audio/menu_sound.mp3';
-  static const String healthHealth1 = 'assets/images/health/health_1.png';
-  static const String healthHealth3 = 'assets/images/health/health_3.png';
-  static const String healthHealthFull = 'assets/images/health/health_full.png';
-  static const String healthHelath2 = 'assets/images/health/helath_2.png';
+  static const String audioShipExplosion = 'assets/audio/ship_explosion.mp3';
   static const String images1 = 'assets/images/1.png';
   static const String images2 = 'assets/images/2.png';
-  static const String images3 = 'assets/images/3.png';
-  static const String imagesBack = 'assets/images/back.jpg';
   static const String imagesBack2 = 'assets/images/back2.jpg';
   static const String imagesBullet2 = 'assets/images/bullet2.png';
+  static const String imagesCoin = 'assets/images/coin.png';
+  static const String imagesCoinEffect2 = 'assets/images/coin_effect2.png';
   static const String imagesEnemy = 'assets/images/enemy.png';
-  static const String imagesEnemy3 = 'assets/images/enemy3.png';
-  static const String imagesExplo = 'assets/images/explo.png';
   static const String imagesExplosion = 'assets/images/explosion.png';
   static const String imagesPause = 'assets/images/pause.png';
   static const String imagesPlayer2 = 'assets/images/player2.png';
-  static const String imagesShip = 'assets/images/ship.png';
-  static const String imagesStars0 = 'assets/images/stars_0.png';
-  static const String imagesStars1 = 'assets/images/stars_1.png';
-  static const String imagesStars2 = 'assets/images/stars_2.png';
 
 }

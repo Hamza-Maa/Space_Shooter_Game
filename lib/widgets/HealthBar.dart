@@ -15,8 +15,10 @@ class HealthBar extends PositionComponent {
     segments = List.generate(maxSegments, (index) {
       return HealthBarSegment(
         isFilled: index < currentSegments,
-        position: Vector2(index * (size.x / maxSegments + 4), 0), // Adjust position with spacing
-        size: Vector2(size.x / maxSegments - 4, size.y), // Adjust size to fit the whole bar with spacing
+        position: Vector2(index * (size.x / maxSegments + 4),
+            0), // Adjust position with spacing
+        size: Vector2(size.x / maxSegments - 4,
+            size.y), // Adjust size to fit the whole bar with spacing
       );
     });
     addAll(segments);

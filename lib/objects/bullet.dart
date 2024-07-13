@@ -34,7 +34,7 @@ class Bullet extends SpriteAnimationComponent
   void update(double dt) {
     super.update(dt);
 
-    position.y += dt * -500;
+    position.y += dt * -500; //speed of the bullet
 
     if (position.y < -height) {
       removeFromParent();

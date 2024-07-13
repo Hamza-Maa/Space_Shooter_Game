@@ -4,9 +4,15 @@ import 'package:tuto_test/overlays/main_menu.dart';
 
 class GameOver extends StatelessWidget {
   final FlameGame game;
-  final VoidCallback onRetry; // Callback for retry action
+  final VoidCallback onRetry;
+  final int score; // Add score parameter
 
-  const GameOver({super.key, required this.game, required this.onRetry});
+  const GameOver({
+    super.key,
+    required this.game,
+    required this.onRetry,
+    required this.score, // Initialize score parameter
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +37,17 @@ class GameOver extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              const SizedBox(height: 20),
+              Text(
+                'Score: $score', // Display the score
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
               const SizedBox(height: 30),
               ElevatedButton(
-                onPressed: () {
-                  onRetry(); // Call retry function passed from SpaceShooterGame
-                },
+                onPressed: onRetry,
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.black,
                   backgroundColor: Colors.yellow,

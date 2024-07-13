@@ -1,3 +1,4 @@
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:tuto_test/overlays/main_menu.dart';
 
@@ -10,6 +11,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FlameAudio.bgm.initialize();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
